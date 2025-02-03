@@ -1,9 +1,20 @@
-# GBH Technical Test
+# Infobam Technical Test
+
+## Getting Started
+
+1. **Fork the Repository (Mandatory)**
+   - Fork this repository to your GitHub account before starting
+   - All work must be done in your forked repository
+   - Make sure your repository remains public until the evaluation
+   - Create feature branches for each component or functionality
+   - Submit your work through Pull Requests
 
 ## Context
+
 This technical test simulates a real-world development environment where you'll be working as part of a team of 5 developers. We expect you to follow standard team development practices including proper git workflow, clear documentation, and maintainable code. Your work should reflect how you would contribute to a shared codebase.
 
 ## Objective
+
 Create a vehicle showcase application using Next.js and a backend of your choice (NestJS or Next.js API Routes). The application should display a list of vehicles with filtering and sorting capabilities.
 
 You can either:
@@ -11,6 +22,7 @@ You can either:
 - Implement your own backend with the provided data structure
 
 ## Required Features
+
 - Responsive design (mobile, tablet, desktop)
 - Display a paginated vehicle list
 - Filter vehicles by manufacturer, type, and year
@@ -19,6 +31,7 @@ You can either:
 - Implement proper git workflow (feature branches, clear commits, PRs)
 
 ## Data Structure
+
 ```typescript
 interface Vehicle {
   id: string;
@@ -85,6 +98,7 @@ The most important part of the evaluation will be a video call where you'll pres
 - Technical presentation: 20 minutes + 10 minutes Q&A
 
 ## Presentation Guidelines
+
 Prepare to discuss:
 1. Technical stack choices
 2. Architecture decisions
@@ -94,5 +108,21 @@ Prepare to discuss:
 6. Testing strategy
 7. Potential improvements
 8. Scalability considerations
+
+## Development Requirements
+
+### Git Workflow
+1. Fork the repository (mandatory)
+2. Create feature branches for each component
+3. Make atomic commits with clear messages
+4. Submit work through Pull Requests
+5. Document major decisions in PR descriptions
+
+### Code Organization
+1. Follow Clean Architecture principles
+2. Implement proper TypeScript types/interfaces
+3. Create reusable components
+4. Include unit tests for core functionality
+5. Document API endpoints and components
 
 Good luck! 🚀
