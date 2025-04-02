@@ -1,5 +1,7 @@
 # Infobam Technical Test
 
+_Read this in [French 🇫🇷](./README-FR.md)_
+
 ## Getting Started
 
 1. **Fork the Repository (Mandatory)**
@@ -18,6 +20,7 @@ This technical test simulates a real-world development environment where you'll 
 Create a vehicle showcase application using Next.js and a backend of your choice (NestJS or Next.js API Routes). The application should display a list of vehicles with filtering and sorting capabilities.
 
 You can either:
+
 - Use the provided mock data
 - Implement your own backend with the provided data structure
 
@@ -35,8 +38,8 @@ You can either:
 ```typescript
 interface Vehicle {
   id: string;
-  manufacturer: string;  // e.g., "BMW", "Tesla", "Toyota"
-  model: string;        // e.g., "X5", "Model 3", "Camry"
+  manufacturer: string; // e.g., "BMW", "Tesla", "Toyota"
+  model: string; // e.g., "X5", "Model 3", "Camry"
   year: number;
   type: VehicleType;
   price: number;
@@ -51,27 +54,29 @@ interface Vehicle {
 }
 
 enum VehicleType {
-  SUV = 'SUV',
-  SEDAN = 'SEDAN',
-  TRUCK = 'TRUCK',
-  SPORTS = 'SPORTS',
-  LUXURY = 'LUXURY',
-  ELECTRIC = 'ELECTRIC'
+  SUV = "SUV",
+  SEDAN = "SEDAN",
+  TRUCK = "TRUCK",
+  SPORTS = "SPORTS",
+  LUXURY = "LUXURY",
+  ELECTRIC = "ELECTRIC",
 }
 
 enum FuelType {
-  GASOLINE = 'GASOLINE',
-  DIESEL = 'DIESEL',
-  ELECTRIC = 'ELECTRIC',
-  HYBRID = 'HYBRID',
-  PLUGIN_HYBRID = 'PLUGIN_HYBRID'
+  GASOLINE = "GASOLINE",
+  DIESEL = "DIESEL",
+  ELECTRIC = "ELECTRIC",
+  HYBRID = "HYBRID",
+  PLUGIN_HYBRID = "PLUGIN_HYBRID",
 }
 ```
 
 ## Evaluation Criteria
 
 ### Technical Presentation (50%)
+
 The most important part of the evaluation will be a video call where you'll present:
+
 - Your technical choices and their justification
 - Architecture decisions
 - Code organization
@@ -80,6 +85,7 @@ The most important part of the evaluation will be a video call where you'll pres
 - Live demonstration of the application
 
 ### Code Quality (30%)
+
 - Clean and maintainable code
 - TypeScript usage
 - Component organization
@@ -88,18 +94,21 @@ The most important part of the evaluation will be a video call where you'll pres
 - Responsive design implementation
 
 ### Development Practices (20%)
+
 - Git workflow
 - Documentation
 - Code organization
 - Commit clarity
 
 ## Timeline
+
 - Expected time: 4-6 hours
 - Technical presentation: 20 minutes + 10 minutes Q&A
 
 ## Presentation Guidelines
 
 Prepare to discuss:
+
 1. Technical stack choices
 2. Architecture decisions
 3. State management approach
@@ -112,6 +121,7 @@ Prepare to discuss:
 ## Development Requirements
 
 ### Git Workflow
+
 1. Fork the repository (mandatory)
 2. Create feature branches for each component
 3. Make atomic commits with clear messages
@@ -119,6 +129,7 @@ Prepare to discuss:
 5. Document major decisions in PR descriptions
 
 ### Code Organization
+
 1. Follow Clean Architecture principles
 2. Implement proper TypeScript types/interfaces
 3. Create reusable components
