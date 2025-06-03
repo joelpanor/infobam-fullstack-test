@@ -22,13 +22,17 @@ export default function VehiculeList() {
 
   const { filterData, setFilterData, filterOptions, isFetching: isFilterFetching } = useVehicleFilter();
 
-
-  useEffect(() => {
-    post({
+  const fetchVehicles = async () => {
+    const response = await post({
       page: currentPage,
       filterData: filterData,
     });
-    setTotalPages(data?.totalPages || 0);
+    setTotalPages(response?.totalPages || 0);
+  }
+
+
+  useEffect(() => {
+   fetchVehicles();
   }, [currentPage]);
 
   useEffect(() => {
@@ -36,11 +40,7 @@ export default function VehiculeList() {
       goToPage(1);
     }
     else {
-      post({
-        page: currentPage,
-        filterData: filterData,
-      });
-      setTotalPages(data?.totalPages || 0);
+      fetchVehicles();
     }
   }, [filterData]);
 
