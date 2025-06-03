@@ -12,6 +12,7 @@ class VehicleService {
   }
 
   getFilteredVehicles(vehicles : Vehicle[],filterData: VehicleFilterData) : Vehicle[] {
+    console.log(vehicles);
     return vehicles.filter((vehicle) => {
       if(filterData.manufacturer.length > 0 && !filterData.manufacturer.includes(vehicle.manufacturer)) {
         return false;

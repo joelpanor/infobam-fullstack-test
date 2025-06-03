@@ -55,14 +55,14 @@ export default function VehiculeList() {
             <VehiculeCard vehicle={vehicle}/>
           </div>
         ))}
-        {data?.data.length === 0 && (
-          <div className="w-full h-full flex flex-col justify-center items-center">
-            <FaInbox className="text-slate-300 text-4xl" />
-            <p className="text-center text-gray-500">No vehicles found</p>
-            <p className="text-center text-gray-500">Please try again with different filters</p>
-          </div>
-        )}
       </div>
+      {data?.data.length === 0 && (
+        <div className="w-full h-full flex flex-col justify-center items-center">
+          <FaInbox className="text-slate-300 text-4xl" />
+          <p className="text-center text-gray-500">No vehicles found</p>
+          <p className="text-center text-gray-500">Please try again with different filters</p>
+        </div>
+      )}
       {!!data?.data.length && data?.data.length > 0 && (
         <Pagination
           currentPage={currentPage}
