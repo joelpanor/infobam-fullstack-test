@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { VehicleResponse } from "@/types/Vehicle";
+import { VehicleFilterData, VehicleResponse } from "@/types/Vehicle";
 import { useFetch } from "@/hooks/useFetch";
 import { usePagination } from "@/hooks/usePagination";
 import Pagination from "@/components/pagination/Pagination";
@@ -9,6 +9,8 @@ import { FaInbox } from "react-icons/fa";
 import VehiculeCard from "./VehicleCard";
 import { Vehicle } from "@/types/Vehicle";
 import Loader from "../ui/Loader";
+import VehicleFilter from "./VehicleFilter";
+import useVehicleFilter from "@/hooks/vehicle/useVehicleFilter";
 
 export default function VehiculeList() {
   const { isFetching, data, post } = useFetch<VehicleResponse>("/api/vehicles");
@@ -18,21 +20,35 @@ export default function VehiculeList() {
     totalPages: 0,
   });
 
+  const { filterData, setFilterData, filterOptions, isFetching: isFilterFetching } = useVehicleFilter();
+
+
   useEffect(() => {
     post({
       page: currentPage,
+      filterData: filterData,
     });
     setTotalPages(data?.totalPages || 0);
-  }, [currentPage]);
+  }, [currentPage, filterData]);
 
   console.log(data);
 
-  if (isFetching) {
+  if (isFetching || isFilterFetching) {
     return <Loader/>;
   }
 
   return (
     <div className="flex flex-col gap-4">
+      <div className="flex md:flex-row flex-col justify-between items-center">
+        <VehicleFilter
+          manufacturerOptions={filterOptions.manufacturersOptions}
+          typeOptions={filterOptions.typesOptions}
+          yearOptions={filterOptions.yearsOptions}
+          isFetching={isFilterFetching || isFetching}
+          filter={filterData}
+          setFilter={(filter: VehicleFilterData) => setFilterData(filter)}
+        />  
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
         {data?.data.map((vehicle: Vehicle) => (
           <div key={vehicle.id} className="w-full h-full flex justify-center items-center">
