@@ -1,4 +1,4 @@
-import VehiculeList from "@/components/VehicleList";
+import VehiculeList from "@/components/vehicleList";
 
 export default async function Home() {
 
