@@ -15,7 +15,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<VehicleRe
   
   const pageSize = 3;
   const vehicles = await vehicleService.getPaginatedVehicles(vehicleList, page, pageSize);
-  const totalVehicles = vehicleList.length;
+  const totalVehicles = vehicleService.getTotalVehicles();
  
   const totalPages = Math.ceil(totalVehicles / pageSize);
 
