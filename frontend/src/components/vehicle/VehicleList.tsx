@@ -29,7 +29,20 @@ export default function VehiculeList() {
       filterData: filterData,
     });
     setTotalPages(data?.totalPages || 0);
-  }, [currentPage, filterData]);
+  }, [currentPage]);
+
+  useEffect(() => {
+    if(currentPage > 1) {
+      goToPage(1);
+    }
+    else {
+      post({
+        page: currentPage,
+        filterData: filterData,
+      });
+      setTotalPages(data?.totalPages || 0);
+    }
+  }, [filterData]);
 
   console.log(data);
 
