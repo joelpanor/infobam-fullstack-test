@@ -4,7 +4,7 @@ import { vehicleList } from "@/data/vehicleMockData";
 
 class VehicleService {
 
-  async getPaginatedVehicles(vehicles : Vehicle[], page: number, pageSize: number) {
+  getPaginatedVehicles(vehicles : Vehicle[], page: number, pageSize: number) : Vehicle[] {
     return vehicles.slice((page - 1) * pageSize, page * pageSize);
   }
 
