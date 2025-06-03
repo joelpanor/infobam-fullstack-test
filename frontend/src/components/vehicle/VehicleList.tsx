@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { VehicleFilterData, VehicleResponse } from "@/types/Vehicle";
 import { useFetch } from "@/hooks/useFetch";
 import { usePagination } from "@/hooks/usePagination";
@@ -13,6 +13,7 @@ import VehicleFilter from "./VehicleFilter";
 import useVehicleFilter from "@/hooks/vehicle/useVehicleFilter";
 import VehicleSorter from "./VehicleSorterBy";
 import useVehicleSorter from "@/hooks/vehicle/useVehicleSorter";
+import VehicleDetails from "./VehicleDetails";
 
 export default function VehiculeList() {
   const { isFetching, data, post } = useFetch<VehicleResponse>("/api/vehicles");
@@ -35,6 +36,7 @@ export default function VehiculeList() {
     setTotalPages(response?.totalPages || 0);
   }
 
+  const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
 
   useEffect(() => {
     fetchVehicles();
@@ -72,7 +74,7 @@ export default function VehiculeList() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
         {data?.data.map((vehicle: Vehicle) => (
           <div key={vehicle.id} className="w-full h-full flex justify-center items-center">
-            <VehiculeCard vehicle={vehicle} />
+            <VehiculeCard vehicle={vehicle}  setSelectedVehicle={setSelectedVehicle} />
           </div>
         ))}
       </div>
@@ -83,6 +85,7 @@ export default function VehiculeList() {
           <p className="text-center text-gray-500">Please try again with different filters</p>
         </div>
       )}
+       <VehicleDetails vehicle={selectedVehicle} resetSelectedVehicle={() => setSelectedVehicle(null)} />
       {!!data?.data.length && data?.data.length > 0 && (
         <Pagination
           currentPage={currentPage}
