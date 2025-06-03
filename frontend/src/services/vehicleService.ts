@@ -3,6 +3,7 @@ import { vehicleList } from "@/data/vehicleMockData";
 import { vehicleManufacturerOptions } from "@/data/vehicleManufacturerOptions";
 import { vehicleTypeOptions } from "@/data/vehicleTypeOptions";
 import { vehicleYearOptions } from "@/data/vehicleYearOptions";
+import { vehicleSortByOptions } from "@/data/vehicleSortByOptions";
 
 
 class VehicleService {
@@ -27,6 +28,23 @@ class VehicleService {
     });
   }
 
+  async getSortedVehicles(vehicles: Vehicle[], sortBy: string) {
+    
+    if(sortBy === "Lower price") {
+      return vehicles.sort((a, b) => a.price - b.price);
+    }
+    if(sortBy === "Higher price") {
+      return vehicles.sort((a, b) => b.price - a.price);
+    }
+    if(sortBy === "Older") {
+      return vehicles.sort((a, b) => a.year - b.year);
+    }
+    if(sortBy === "Newer") {
+      return vehicles.sort((a, b) => b.year - a.year);
+    }
+
+    return vehicles;
+  }
 
   async getVehicleManufacturers() {
     return vehicleManufacturerOptions;
@@ -38,6 +56,10 @@ class VehicleService {
 
   async getVehicleYears() {
     return vehicleYearOptions;
+  }
+
+  async getVehicleSortByOptions() {
+    return vehicleSortByOptions;
   }
 
   getTotalVehicles() : number {
