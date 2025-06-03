@@ -8,6 +8,10 @@ class VehicleService {
     return vehicles.slice((page - 1) * pageSize, page * pageSize);
   }
 
+  getTotalVehicles() : number {
+    return vehicleList.length;
+  }
+
 }
 
 export const vehicleService = new VehicleService();
