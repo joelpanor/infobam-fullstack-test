@@ -11,6 +11,8 @@ import { Vehicle } from "@/types/Vehicle";
 import Loader from "../ui/Loader";
 import VehicleFilter from "./VehicleFilter";
 import useVehicleFilter from "@/hooks/vehicle/useVehicleFilter";
+import VehicleSorter from "./VehicleSorterBy";
+import useVehicleSorter from "@/hooks/vehicle/useVehicleSorter";
 
 export default function VehiculeList() {
   const { isFetching, data, post } = useFetch<VehicleResponse>("/api/vehicles");
@@ -22,32 +24,35 @@ export default function VehiculeList() {
 
   const { filterData, setFilterData, filterOptions, isFetching: isFilterFetching } = useVehicleFilter();
 
+  const { sortBy, setSortBy, sortByOptions } = useVehicleSorter();
+
   const fetchVehicles = async () => {
     const response = await post({
       page: currentPage,
       filterData: filterData,
+      sortBy: sortBy,
     });
     setTotalPages(response?.totalPages || 0);
   }
 
 
   useEffect(() => {
-   fetchVehicles();
-  }, [currentPage]);
+    fetchVehicles();
+  }, [currentPage, sortBy]);
 
   useEffect(() => {
-    if(currentPage > 1) {
+    if (currentPage > 1) {
       goToPage(1);
     }
     else {
       fetchVehicles();
     }
-  }, [filterData]);
+  }, [filterData, sortBy]);
 
   console.log(data);
 
   if (isFetching || isFilterFetching) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   return (
@@ -60,12 +65,14 @@ export default function VehiculeList() {
           isFetching={isFilterFetching || isFetching}
           filter={filterData}
           setFilter={(filter: VehicleFilterData) => setFilterData(filter)}
-        />  
+        />
+
+        <VehicleSorter sortBy={sortBy} setSortBy={setSortBy} sortByOptions={sortByOptions} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
         {data?.data.map((vehicle: Vehicle) => (
           <div key={vehicle.id} className="w-full h-full flex justify-center items-center">
-            <VehiculeCard vehicle={vehicle}/>
+            <VehiculeCard vehicle={vehicle} />
           </div>
         ))}
       </div>
