@@ -8,7 +8,7 @@ import Pagination from "@/components/pagination/Pagination";
 import { FaInbox } from "react-icons/fa";
 import VehiculeCard from "./VehicleCard";
 import { Vehicle } from "@/types/Vehicle";
-import Loader from "./ui/Loader";
+import Loader from "../ui/Loader";
 
 export default function VehiculeList() {
   const { isFetching, data, post } = useFetch<VehicleResponse>("/api/vehicles");
