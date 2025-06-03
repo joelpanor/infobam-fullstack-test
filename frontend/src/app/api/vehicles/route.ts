@@ -6,16 +6,24 @@ import z from "zod";
 
 const VehiclePaginationSchema = z.object({
   page: z.number().min(1),
+  filterData: z.object({
+    manufacturer: z.string(),
+    type: z.string(),
+    year: z.string(),
+  }),
 });
 
 export async function POST(request: NextRequest): Promise<NextResponse<VehicleResponse>> {
+  const pageSize = 3;
 
   //Validate the request body
-  const { page } = VehiclePaginationSchema.parse(await request.json());
+  const { page, filterData } = VehiclePaginationSchema.parse(await request.json());
   
-  const pageSize = 3;
-  const vehicles = await vehicleService.getPaginatedVehicles(vehicleList, page, pageSize);
-  const totalVehicles = vehicleService.getTotalVehicles();
+
+  const filteredVehicles = await vehicleService.getFilteredVehicles(vehicleList, filterData);
+  const totalVehicles = filteredVehicles.length;
+  
+  const vehicles = await vehicleService.getPaginatedVehicles(filteredVehicles, page, pageSize);
  
   const totalPages = Math.ceil(totalVehicles / pageSize);
 
